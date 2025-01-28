@@ -1,10 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [pageViews, setPageViews] = useState(0)
+
+  useEffect(() => {
+    const incrementPageViews = async () => {
+      try {
+        const response = await fetch('/api/increment-views', {
+          method: 'POST',
+        })
+        const data = await response.json()
+        setPageViews(data.views)
+      } catch (error) {
+        console.error('Failed to increment page views:', error)
+      }
+    }
+
+    incrementPageViews()
+  }, [])
 
   return (
     <>
@@ -21,6 +38,9 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <p>
+          このページは {pageViews} 回表示されました
+        </p>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
