@@ -1,6 +1,7 @@
 name = "vite-cloudflare"
 compatibility_date = "2024-02-17"
 
-kv_namespaces = [
-  { binding = "PAGE_VIEWS", id = "84e783feb3e944c0ba7deb17345544ed" }
-] 
+[[kv_namespaces]]
+binding = "PAGE_VIEWS"
+id = "84e783feb3e944c0ba7deb17345544ed"
+preview_id = "148a113c02864f43b510e6eb8a1433b4" 
